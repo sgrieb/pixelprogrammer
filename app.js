@@ -14,10 +14,13 @@ else {
     LedMatrix = require("node-rpi-rgb-led-matrix");
 }
 
-// start the webserver!
-var webserver = new WebServer(process.env.CLIENT || './client');
-webserver.start();
 
 // turn on the matrix!
-var matrixService = new MatrixService(new LedMatrix());
-matrixService.setFrame();
+var matrixService = new MatrixService(new LedMatrix(32));
+matrixService.fill(255, 50, 100);
+//matrixService.setFrame();
+
+// start the webserver!
+var webserver = new WebServer(process.env.CLIENT || './client', matrixService);
+webserver.start();
+
