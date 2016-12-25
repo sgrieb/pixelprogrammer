@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pixel Programmer</title>
+  <link rel="stylesheet" href="build/make8bitart.css" />
+  <link rel="stylesheet" href="css/PP.css" />
+  <link rel="icon" href="assets/favicon.png" />
+</head>
+<body>
+  <header class="draggy" role="banner">
+    <div class="controls">
+      <h1>Pixel Programmer</h1>
+      <button role="button" class="ui-dragger">
+        <img src="assets/draggybits/dragger.png" alt="move controls window">
+      </button>
+    </div>
+    <h1 style='display:none;'>make 8-bit art!</h1>
+    <ul id="minimized-tools-list" role="navigation"></ul>
+  </header>
+  <!--<section id="what" class="draggy" title="what is this?" data-title="what">
+    <div class="controls">
+      <button role="button" class="ui-dragger">
+        <img src="assets/draggybits/dragger.png" alt="move controls window">
+      </button>
+      <button role="button" class="ui-hider">
+        <img src="assets/draggybits/hider.png" alt="move controls window">
+      </button>
+    </div>
+    <h2>what is this?</h2>
+
+    <p>this is an <a href="http://github.com/jennschiffer/make8bitart" title="link to make8bitart repo on github" target="_blank">open source</a> pixel art drawing tool by <a href="http://jennmoney.biz" title="official website of" target="_blank">jennmoneydollars</a>!</p>
+
+    <p>if you make something cool, i wanna see it – tweet me at <a href="http://twitter.com/jennschiffer">@jennschiffer</a>!</p>
+  </section>-->
+  <section id="toolbox" class="draggy" title="Tools" data-title="tools">
+    <div class="controls">
+      <button role="button" class="ui-hider">
+        <img src="assets/draggybits/hider.png" alt="move controls window">
+      </button>
+      <button role="button" class="ui-dragger">
+        <img src="assets/draggybits/dragger.png" alt="move controls window">
+      </button>
+    </div>
+    <div id="instruments" class="inner">
+      <h2>Tools</h2>
+      <ul role="toolbar">
+        <li>
+          <button title='Pencil' id="pencil" role="button" class="current-tool icon-button">
+            <img src="assets/pencil.png" alt="draw" />
+          </button>
+        </li>
+        <li>
+          <button title='Fill' id="paint" role="button" class="icon-button">
+            <img src="assets/paint.png" alt="Fill" />
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div id="editing" class="inner">
+      <ul role="toolbar">
+        <li>
+          <button id="cut" role="button" class="icon-button">
+            <img src="assets/cut.png" alt="Cut" />
+          </button>
+        </li>
+        <li>
+          <button id="copy" role="button" class="icon-button">
+            <img src="assets/copy.png" alt="Copy" />
+          </button>
+        </li>
+        <li>
+          <button id="paste" role="button" class="icon-button">
+            <img src="assets/paste.png" alt="paste" />
+          </button>
+        </li>
+      </ul>
+
+      <ul class="instructions paste">
+        <li>click on the canvas where you want the top left corner of your copied clip to be pasted.</li>
+      </ul>
+<!--
+      <button role="button" class="text-button" id="undo" disabled="disabled">undo</button>
+      <button role="button" class="text-button" id="redo" disabled="disabled" />redo</button>-->
+      <button role="button" class="text-button" id="new-canvas">Clear</button>
+    </div>
+
+    <!--<div id="size" class="inner">
+      <h2>brush size</h2>
+      <input id="pixel-size" class="pixel-size-input" type="number" min="2" max="100" step="1" value="15" />
+      <input id="pixel-size-slider" class="pixel-size-input" type="range" min="2" max="100" step="1" value="15" />
+      <div id="pixel-size-demo" class="color-demo"> </div>
+    </div>-->
+  </section>
+  <section id="ledcontrols" class="draggy" title="LED Controls" data-title="ledcontrols">
+    <h2>LED Controls</h2>
+    <div class="controls">
+      <button role="button" class="ui-hider">
+        <img src="assets/draggybits/hider.png" alt="move controls window">
+      </button>
+      <button role="button" class="ui-dragger">
+        <img src="assets/draggybits/dragger.png" alt="move controls window">
+      </button>
+    </div>
+    <button class='green-button' id='startLedBtn' data-state='stopped' >Start LEDs!</button>
+    <button class='green-button' id='loadAnimationBtn' data-state='stopped' >Load Animation</button>
+    <button class='green-button' id='saveAnimationBtn' data-state='stopped' >Save Animation</button>
+  </section>
+  <section id="filebox" class="draggy" title="Import/Export" data-title="import-save">
+    <div class="controls">
+      <button role="button" class="ui-hider">
+        <img src="assets/draggybits/hider.png" alt="move controls window">
+      </button>
+      <button role="button" class="ui-dragger">
+        <img src="assets/draggybits/dragger.png" alt="move controls window">
+      </button>
+    </div>
+    <div id="import" class="inner">
+      <h2>import art</h2>
+      <label for="open-local" class="local" id="open-local-form">
+        from local storage:
+        <button role="button" class="text-button" id="open-local">import local art</button>
+      </label>
+
+      <label for="import-pxon" class="pxon" id="import-pxon-form">
+        import <a href="http://pxon.github.io/">pxon</a>:
+        <input type="file" id="import-pxon" name="import-pxon" />
+      </label>
+    </div>
+
+    <div id="export">
+      <h2>export art</h2>
+
+      <label for="save-png" class="png" id="save-png-form">
+        to png:<br />
+        <button role="button" class="text-button" id="save-full">full page</button>
+        <button role="button" class="text-button" id="save-selection">selection</button>
+      </label>
+
+      <label for="save-local" class="local" id="save-local-form">
+        to local storage:<br />
+        <button role="button" class="text-button" id="save-local" class="local">local store</button>
+      </label>
+
+      <label for="export-pxon" class="pxon" id="export-pxon-form">
+        export <a href="http://jennmoney.biz/pxon">pxon</a>:<br />
+        <button role="button" class="text-button" id="export-pxon" class="pxon">export pxon</button>
+      </label>
+
+      <label for="export-led" class="led">
+        <button role="button" class="text-button" id="export-led" class="led">export to led</button>
+      </label>
+    </div>
+
+    <ul class="instructions save">
+      <li>click and drag to select the area of the canvas you want to save.</li>
+    </ul>
+  </section>
+  <section id="colorbox" class="draggy" title="Color" data-title="colors">
+    <div class="controls">
+      <button role="button" class="ui-hider">
+        <img src="assets/draggybits/hider.png" alt="move controls window">
+      </button>
+      <button role="button" class="ui-dragger">
+        <img src="assets/draggybits/dragger.png" alt="move controls window">
+      </button>
+    </div>
+
+    <!--<div class="tabs" role="navigation">
+        <button role="button" class="pickers active" data-href="#pickers">color pickers</button>
+        <button role="button" class="palettes" data-href="#custom-palettes">history/custom palettes</button>
+    </div>-->
+
+    <div id="pickers">
+      <div id="hex-picker">
+        <h2>Color</h2>
+        <span class="pound">#</span><input type="text" id="hex-color" value="000000" />
+
+        <button role="button" id="color-dropper" class="icon-button">
+          <img src="assets/dropper.png" alt="color dropper" />
+        </button>
+      </div>
+
+      <ul class="colors clearfix">
+        <li><button role="button" class="button color primary cyan" title="cyan" data-color="rgba(0, 255, 255, 1)"> </button></li>
+        <li><button role="button" class="button color primary magenta" title="magenta" data-color="rgba(255, 0, 255, 1)"> </button></li>
+        <li><button role="button" class="button color primary yellow" title="yellow" data-color="rgba(255, 255, 0, 1)"> </button></li>
+        <li><button role="button" class="button color primary black" title="black" data-color="rgba(0, 0, 0, 1)"> </button></li>
+        <li><button role="button" class="button color primary gray" title="gray" data-color="rgba(128, 128, 128, 1)"> </button></li>
+        <li><button role="button" class="button color primary white" title="white" data-color="rgba(255, 255, 255, 1)"> </button></li>
+        <li><button role="button" class="button color transparent" title="erase" data-color="rgba(0, 0, 0, 0)"> </button></li>
+      </ul>
+
+      <div id="eight-bit-picker">
+        <!--<h2 class="eightbit">click to pick:</h2>-->
+        <canvas id="eight-bit-colors" width="195" height="195"></canvas>
+        <div class="color-demo eightbit"></div>
+      </div>
+    </div>
+
+    <div id="custom-palettes" >
+      <div id="color-history" class="inner">
+        <h2 class="color-history-label">history:</h2>
+        <ul class="color-history-list colors clearfix"></ul>
+        <div id="color-history-tools">
+          <button role="button" class="text-button clear">clear history</button>
+        </div>
+      </div>
+
+      <div id="color-custom" class="palettes inner">
+        <h2 class="color-upload-label">custom palette:</h2>
+        <ul class="color-custom-list colors clearfix"></ul>
+        <div id="color-custom-tools">
+          <p>Upload file in "name,hex" csv format, like in <a href="assets/example.csv">example.csv</a>!</p>
+
+          <input type="file" name="upload-palette" class="import" />
+          <button role="button" class="text-button clear">clear palette</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="save-modal-container" class="modal hidden">
+    <div id="save-modal" class="inside-modal">
+      <div class="controls">
+        <button role="button" class="ui-hider">
+          <img src="assets/draggybits/hider.png" alt="move controls window">
+        </button>
+      </div>
+      <h2>you saved your art!</h2>
+      <a href="#" target="_blank"><img id="finished-art" /></a>
+
+      <p>Click or drag your art to your desktop to save!<br />
+        <button role="button" class="text-button"id="save-imgur">Or upload to imgur.com!</button>
+      </p>
+      <p id="link-imgur"></p>
+    </div>
+  </section>
+
+  <section id="open-modal-container" class="modal hidden">
+    <div id="open-modal" class="inside-modal">
+      <div class="controls">
+        <button role="button" class="ui-hider">
+          <img src="assets/draggybits/hider.png" alt="move controls window">
+        </button>
+      </div>
+
+      <h2>you have some locally saved art!</h2>
+      <h3>wanna open one? click a thumbnail...</h3>
+
+      <ul class="gallery"> </ul>
+    </div>
+  </section>
+
+<section id="save-animation" class="modal hidden">
+    <div id="save-animation-modal" class="inside-modal">
+      <div class="controls">
+        <button role="button" class="ui-hider">
+          <img src="assets/draggybits/hider.png" alt="move controls window">
+        </button>
+      </div>
+
+      <h2>Save Your Animation</h2>
+      <button id='save-button' class="green-button">SAVE!</button>
+      <ul id='saveList'>
+        
+      </ul>
+    </div>
+  </section>
+
+<!-- Order matters! -->
+<script src="build/vendor.min.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+<script src="js/app/globals.js"></script>
+<script src="js/app/dom.js"></script>
+<script src="js/PP.js"></script>
+<script src="js/PP/API.js"></script>
+<script src="js/PP/Events.js"></script>
+<script src="js/PP/Overlay.js"></script>
+<script src="js/PP/Storage.js"></script>
+<script src="js/PP/LedControls.js"></script>
+<script src="js/PP/LedControls/Save.js"></script>
+<script src="js/PP/Tools.js"></script>
+<script src="js/PP/Tools/Size.js"></script>
+<script src="js/PP/Tools/Instruments.js"></script>
+<script src="js/PP/Tools/Edit.js"></script>
+<script src="js/PP/Tools/ColorPicker.js"></script>
+<script src="js/PP/Tools/Drag.js"></script>
+<script src="js/PP/Canvas.js"></script>
+<script>
+// run on document ready
+$(function() {
+  // init the app!
+  PP.init();
+}());
+</script>
+</body>
+</html>

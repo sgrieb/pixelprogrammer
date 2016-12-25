@@ -1,0 +1,67 @@
+
+body{
+    height:100%;
+    width:100%;
+}
+
+header {
+    width:420px;
+}
+
+.ui-hider {
+  float:right;
+  margin-left: 10px !important;
+}
+
+.ui-dragger {
+  float:right;
+}
+
+#colorpicker {
+    right: 2% !important;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1 {
+    display: inline-block;
+    margin-right: 10px !important;
+    margin-bottom: 5px !important;
+}
+
+#new-canvas {
+    margin-top: 10px;
+}
+
+#ledcontrols {
+    left:40% !important;
+    top:2% !important;
+    width:450px;
+    text-align: left;
+}
+
+#ledcontrols h2 {
+    display:inline-block;
+}
+
+.green-button {
+  display: inline-block;
+  padding: 3px 10px;
+  background: lime;
+  margin: 3px;
+  border: none;
+  font-family: 'VT323', monospace;
+  font-size: 1em;
+}
+
+.green-button button:hover {
+  color: green;
+  cursor: pointer;
+}
+
+.save-list-item{
+    display: block;
+    float:left;
+}

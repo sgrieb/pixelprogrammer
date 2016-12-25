@@ -1,13 +1,13 @@
 {
-  "name": "pixelprogrammer-server",
+  "name": "pixelprogrammer",
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/npm/npm.git"
+    "url": "https://github.com/sgrieb/pixelprogrammer.git"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node server/app.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
