@@ -112,6 +112,15 @@
             historyPointer = -1;
             DOM.$redo.attr('disabled', 'disabled');
             DOM.$undo.attr('disabled', 'disabled');
+
+            // redraw the template
+            // draw the template
+            $.getJSON("data/template.json", function(pixels) {
+
+                pixels.forEach(function(e, i, a){
+                    PP.Canvas.drawPixel(e.x, e.y, e.color, e.size, true );
+                });
+            });
         }
     }
 

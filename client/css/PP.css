@@ -61,11 +61,19 @@ h1 {
   cursor: pointer;
 }
 
-.save-list-item{
+.save-list-item, .load-list-item{
     display: block;
     float:left;
 }
 
 #saveAnimationBtn {
     display: block;
+}
+
+.bottom {
+    margin-top: 10px;
+}
+
+#currentFile {
+    margin-right: 80px;
 }

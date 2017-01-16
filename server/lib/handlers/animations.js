@@ -27,31 +27,35 @@ Animations.get = function(req, res) {
 
 Animations.post = function(req, res) {
 
-    if (req.body.data){
+    // code for posting json
+    // if (req.body.data){
+    //     // set all the pixels!
+    //     req.body.data.forEach(function(pixel){
 
+    //         var color = new Rgba(pixel.color);
 
-        // set all the pixels!
-        req.body.data.forEach(function(pixel){
+    //         matrixService.setPixel(pixel.x, pixel.y, color.R, color.G, color.B);
+    //     });
+    // }
 
-            var color = new Rgba(pixel.color);
+    // if we have an animation name
+    if (req.body.name) {
 
-            matrixService.setPixel(pixel.x, pixel.y, color.R, color.G, color.B);
-        });
+        var folder = path.join(__dirname, '../.././data/' + req.body.name);
+
+        // if the folder doesnt exist, make it
+        if (!fs.existsSync(folder)) {
+            fs.mkdirSync(folder);
+        }
+
+        // write the file
+        fs.writeFileSync(folder + '/1.json', JSON.stringify(req.body.data));
+
+        res.sendStatus(200);
     }
-
-    // if (req.body.name) {
-    //     // write the file
-    //     fs.writeFileSync(path.join(__dirname, '../.././data/' + req.body.name + '.json'), JSON.stringify(req.body), function(err) {
-    //         if(err) {
-    //             return console.log(err);
-    //         }
-
-    //         console.log("The file was saved!");
-    //     }); 
-    // }
-    // else {
-    //     res.sendStatus(403);
-    // }
+    else {
+        res.sendStatus(403);
+    }
 
 };
 

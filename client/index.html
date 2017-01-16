@@ -104,7 +104,8 @@
     </div>
     <button class='green-button' id='startLedBtn' data-state='stopped' >Start LEDs!</button>
     <span id='currentFile'>MyFile</span>
-    <button class='green-button' id='saveAnimationBtn' data-state='stopped' >Save / Load</button>
+    <button class='green-button' id='saveMenuBtn' >Save</button>
+    <button class='green-button' id='loadMenuBtn' >Load</button>
   </section>
   <section id="filebox" class="draggy" title="Import/Export" data-title="import-save">
     <div class="controls">
@@ -262,10 +263,34 @@
       </div>
 
       <h2>Save Your Animation</h2>
-      <button id='save-button' class="green-button">SAVE!</button>
-      <ul id='saveList'>
-        
-      </ul>
+      <div class='top'>
+        <span>New File: </span>
+        <input id='fileInput' type="text">
+        <button id='save-button' class="green-button">SAVE!</button>
+      </div>
+      <div class='bottom'>
+        <span style='float: left;'>Overwrite:</span>
+        <ul id='saveList'>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="load-animation" class="modal hidden">
+    <div id="load-animation-modal" class="inside-modal">
+      <div class="controls">
+        <button role="button" class="ui-hider">
+          <img src="assets/draggybits/hider.png" alt="move controls window">
+        </button>
+      </div>
+
+      <h2>Load an Animation</h2>
+      <span>Careful! Any unsaved changes will be lost!</span>
+      <div class='bottom'>
+        <span style='float: left;'>Load:</span>
+        <ul id='loadList'>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -281,6 +306,7 @@
 <script src="js/PP/Storage.js"></script>
 <script src="js/PP/LedControls.js"></script>
 <script src="js/PP/LedControls/Save.js"></script>
+<script src="js/PP/LedControls/Load.js"></script>
 <script src="js/PP/Tools.js"></script>
 <script src="js/PP/Tools/Size.js"></script>
 <script src="js/PP/Tools/Instruments.js"></script>

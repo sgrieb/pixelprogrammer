@@ -5,6 +5,8 @@
     PP.LedControls.init = function(){
         
         PP.LedControls.Save.init();
+        PP.LedControls.Load.init();
+
         $('#startLedBtn').click(toggleLed);
 
         function toggleLed() {
